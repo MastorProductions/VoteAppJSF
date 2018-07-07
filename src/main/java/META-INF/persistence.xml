@@ -3,8 +3,15 @@
 
     <persistence-unit name="VoteApp">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <non-jta-data-source>java:jboss/datasources/VoteApp</non-jta-data-source>
-        <!--<class>entities.Product</class>-->
+        <jta-data-source>java:jboss/datasources/VoteApp</jta-data-source>
+        <class>entities.Candidate</class>
+        <class>entities.Vote</class>
+        <class>entities.Voter</class>
+        <properties>
+            <property name="org.hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/voteapp"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+        </properties>
     </persistence-unit>
 
 </persistence>

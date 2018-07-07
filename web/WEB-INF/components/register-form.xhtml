@@ -1,0 +1,44 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html">
+  <h:form modelAttribute="voter" id="register-form" action="${pageContext.request.contextPath}/register"
+          method="post" style="display: none;">
+
+    <div class="form-group">
+      <h:inputText path="voterId" pattern="[0-9]{1,15}" required="true" type="number" name="register-voter-id"
+                   id="register-voter-id"
+                   tabindex="1"
+                   class="form-control"
+                   placeholder="ID"/>
+    </div>
+
+    <div class="form-group">
+      <h:inputText path="voterName" pattern="[A-Za-z]{1,30}" required="true" name="name" id="name" tabindex="2"
+                   class="form-control" placeholder="Name"/>
+    </div>
+
+    <div class="form-group">
+      <h:inputText path="voterSurname" pattern="[A-Za-z]{1,30}" required="true" name="surname" id="surname"
+                   tabindex="2"
+                   class="form-control"
+                   placeholder="Surname"/>
+    </div>
+
+    <div class="form-group">
+      <h:inputText path="voterPassword" pattern=".{1,30}" required="true" type="password" name="register-password"
+                   id="register-password" tabindex="3"
+                   class="form-control"
+                   placeholder="Password"/>
+    </div>
+
+    <div class="form-group">
+      <h:inputText pattern=".{1,30}" type="password" name="confirm-password" id="confirm-password"
+                   tabindex="3" class="form-control"
+                   placeholder="Confirm Password"/>
+    </div>
+
+    <div class="form-group">
+      <h:commandButton type="submit" name="register-submit" id="register-submit" tabindex="4"
+                       class="form-control btn btn-register" value="Register Now"/>
+    </div>
+
+  </h:form>
+</ui:composition>

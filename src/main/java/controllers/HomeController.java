@@ -7,7 +7,7 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class HomeController {
 
-    public String home() {
-        return "home";
+    public String test() {
+        return "/page/test?faces-redirect=true";
     }
 }
