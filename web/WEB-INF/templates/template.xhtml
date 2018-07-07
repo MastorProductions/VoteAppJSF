@@ -1,0 +1,33 @@
+<ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+  <h:head>
+    <ui:insert name="title">
+      <title>VoteApp</title>
+    </ui:insert>
+    <ui:include src="/WEB-INF/components/header.xhtml"/>
+  </h:head>
+
+  <body>
+
+  <ui:include src="/WEB-INF/components/navbar.xhtml"/>
+
+  <div class="container-fluid bg">
+
+    <ui:include src="/WEB-INF/components/jumbotron.xhtml"/>
+
+    <ui:insert name="content">
+      <ui:include src="/WEB-INF/components/form.xhtml"/>
+    </ui:insert>
+
+    <ui:insert name="error">
+      <ui:include src="/WEB-INF/components/error.xhtml"/>
+    </ui:insert>
+
+  </div>
+
+  <ui:include src="/WEB-INF/components/footer.xhtml"/>
+
+  </body>
+
+</ui:composition>

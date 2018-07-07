@@ -1,43 +1,60 @@
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html">
-  <h:form modelAttribute="voter" id="register-form" action="${pageContext.request.contextPath}/register"
-          method="post" style="display: none;">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+  <h:form p:id="register-form" style="display: none;">
 
     <div class="form-group">
-      <h:inputText path="voterId" pattern="[0-9]{1,15}" required="true" type="number" name="register-voter-id"
-                   id="register-voter-id"
+      <h:inputText p:pattern="[0-9]{1,15}"
+                   required="true"
+                   p:type="number"
+                   p:id="register-voter-id"
                    tabindex="1"
-                   class="form-control"
-                   placeholder="ID"/>
+                   styleClass="form-control"
+                   p:placeholder="ID"/>
     </div>
 
     <div class="form-group">
-      <h:inputText path="voterName" pattern="[A-Za-z]{1,30}" required="true" name="name" id="name" tabindex="2"
-                   class="form-control" placeholder="Name"/>
-    </div>
-
-    <div class="form-group">
-      <h:inputText path="voterSurname" pattern="[A-Za-z]{1,30}" required="true" name="surname" id="surname"
+      <h:inputText p:pattern="[A-Za-z]{1,30}"
+                   required="true"
+                   p:id="name"
                    tabindex="2"
-                   class="form-control"
-                   placeholder="Surname"/>
+                   styleClass="form-control"
+                   p:placeholder="Name"/>
     </div>
 
     <div class="form-group">
-      <h:inputText path="voterPassword" pattern=".{1,30}" required="true" type="password" name="register-password"
-                   id="register-password" tabindex="3"
-                   class="form-control"
-                   placeholder="Password"/>
+      <h:inputText p:pattern="[A-Za-z]{1,30}"
+                   required="true"
+                   p:id="surname"
+                   tabindex="2"
+                   styleClass="form-control"
+                   p:placeholder="Surname"/>
     </div>
 
     <div class="form-group">
-      <h:inputText pattern=".{1,30}" type="password" name="confirm-password" id="confirm-password"
-                   tabindex="3" class="form-control"
-                   placeholder="Confirm Password"/>
+      <h:inputSecret p:pattern=".{1,30}"
+                     required="true"
+                     p:id="register-password"
+                     tabindex="3"
+                     styleClass="form-control"
+                     p:placeholder="Password"/>
     </div>
 
     <div class="form-group">
-      <h:commandButton type="submit" name="register-submit" id="register-submit" tabindex="4"
-                       class="form-control btn btn-register" value="Register Now"/>
+      <h:inputSecret p:pattern=".{1,30}"
+                     p:id="confirm-password"
+                     tabindex="3"
+                     styleClass="form-control"
+                     p:placeholder="Confirm Password"/>
+    </div>
+
+    <div class="form-group">
+      <h:commandButton type="submit"
+                       p:id="register-submit"
+                       tabindex="4"
+                       styleClass="form-control btn btn-register"
+                       value="Register Now"/>
     </div>
 
   </h:form>

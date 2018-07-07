@@ -1,27 +1,37 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
-  <h:form modelAttribute="voter" id="login-form" action="${pageContext.request.contextPath}/login" method="post"
-          style="display: block;">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+  <h:form modelAttribute="voter" p:id="login-form" style="display: block;">
 
     <div class="form-group">
-      <h:inputText path="voterId" pattern="[0-9]{1,15}" required="true" type="number" name="login-voter-id"
-                   id="login-voter-id" tabindex="1"
-                   class="form-control" placeholder="ID"/>
-    </div>
-
-    <div class="form-group">
-      <h:inputText path="voterPassword" pattern=".{1,30}" required="true" type="password" name="login-password"
-                   id="login-password"
+      <h:inputText p:pattern="[0-9]{1,15}"
+                   required="true"
+                   p:type="number"
+                   p:id="login-voter-id"
                    tabindex="1"
-                   class="form-control"
-                   placeholder="Password"/>
+                   styleClass="form-control"
+                   p:placeholder="ID"/>
     </div>
 
     <div class="form-group">
-      <h:commandButton type="submit" name="login-submit" id="login-submit" tabindex="4"
+      <h:inputSecret p:pattern=".{1,30}"
+                     required="true"
+                     p:id="login-password"
+                     tabindex="1"
+                     styleClass="form-control"
+                     p:placeholder="Password"/>
+    </div>
+
+    <div class="form-group">
+      <h:commandButton type="submit"
+                       name="login-submit"
+                       id="login-submit"
+                       tabindex="4"
                        class="form-control btn btn-login"
                        value="Log In"/>
     </div>
 
   </h:form>
+
 </ui:composition>
