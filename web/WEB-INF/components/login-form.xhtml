@@ -7,11 +7,11 @@
     <div class="form-group">
       <h:inputText p:pattern="[0-9]{1,15}"
                    required="true"
-                   p:type="number"
                    p:id="login-voter-id"
                    tabindex="1"
                    styleClass="form-control"
-                   p:placeholder="ID"/>
+                   p:placeholder="ID"
+                   value="#{voterBean.id}"/>
     </div>
 
     <div class="form-group">
@@ -20,11 +20,13 @@
                      p:id="login-password"
                      tabindex="1"
                      styleClass="form-control"
-                     p:placeholder="Password"/>
+                     p:placeholder="Password"
+                     value="#{voterBean.password}"/>
     </div>
 
     <div class="form-group">
-      <h:commandButton type="submit"
+      <h:commandButton action="#{voterBean.login}"
+                       type="submit"
                        name="login-submit"
                        id="login-submit"
                        tabindex="4"

@@ -13,26 +13,26 @@
             <span class="icon-bar"/>
             <span class="icon-bar"/>
           </button>
-          <a class="navbar-brand" href="${pageContext.request.contextPath}/">#NerdElections</a>
+          <h:commandLink styleClass="navbar-brand" action="index" value="#NerdElections"/>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li>
-              <h:commandLink action="vote" value="Vote"/>
+              <h:commandLink action="#{navigationController.vote}" value="Vote"/>
             </li>
             <li>
-              <h:commandLink action="vote" value="My Votes"/>
+              <h:commandLink action="#{navigationController.history}" value="My Votes"/>
             </li>
             <li>
-              <h:commandLink action="vote" value="Rankings"/>
+              <h:commandLink action="#{navigationController.rankings}" value="Rankings"/>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <ui:fragment rendered="#{userSession.voter ne null}">
+            <ui:fragment rendered="#{userController.voter ne null}">
               <li>
-                <p class="navbar-text">Hello <strong style="margin-left: 5px">#{userSession.voter.voterName}
+                <p class="navbar-text">Hello <strong style="margin-left: 5px">#{userController.voter.voterName}
                 </strong></p>
               </li>
               <!--<li>
@@ -41,10 +41,10 @@
                 </a>
               </li>-->
               <li>
-                <h:commandLink action="#{loginManagedMean.logout}" style="font-weight: bold" value="Logout"/>
+                <h:commandLink action="#{userController.logout}" style="font-weight: bold" value="Logout"/>
               </li>
             </ui:fragment>
-            <ui:fragment rendered="#{userSession.voter eq null}">
+            <ui:fragment rendered="#{userController.voter eq null}">
               <li>
                 <p class="navbar-text">Already have an account?</p>
               </li>
@@ -58,7 +58,7 @@
                 <h:commandLink styleClass="dropdown-toggle"
                                style="font-weight: bold"
                                data-toggle="dropdown"
-                               action="#{loginManagedMean.login}"
+                               action="#{userController.login}"
                                value="Login"/>
 
               </li>
