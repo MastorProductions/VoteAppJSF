@@ -7,11 +7,14 @@
   </ui:define>
 
   <ui:define name="content">
-    <ui:include src="/WEB-INF/components/form.xhtml"/>
+    <ui:include src="/WEB-INF/content/form.xhtml"/>
   </ui:define>
 
   <ui:define name="error">
-    <ui:include src="/WEB-INF/components/error.xhtml"/>
+    <ui:fragment
+        rendered="#{not empty facesContext.messageList}">
+      <ui:include src="/WEB-INF/components/error-small.xhtml"/>
+    </ui:fragment>
   </ui:define>
 
 </ui:composition>

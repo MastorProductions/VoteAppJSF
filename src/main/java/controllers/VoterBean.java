@@ -3,17 +3,19 @@ package controllers;
 import entities.Voter;
 import services.VoterService;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @RequestScoped
 public class VoterBean {
 
-    private Integer id;
-    private String password;
+    private Voter voter;
 
     @EJB
     private VoterService voterService;
@@ -21,44 +23,87 @@ public class VoterBean {
     @ManagedProperty("#{userController}")
     private UserController userController;
 
-    @ManagedProperty("#{errorBean}")
-    private ErrorBean errorBean;
+    @PostConstruct
+    public void init() {
+        this.voter = new Voter();
+    }
 
     public String login() {
 
-        if (userController.getVoter() != null) return "vote";
+        if (userController.getVoter() != null) return "vote?faces-redirect=true";
 
-        Voter loggedVoter = voterService.login(this);
+        Voter loggedVoter = voterService.login(voter);
 
         if (loggedVoter != null) {
             userController.setVoter(loggedVoter);
-            return "vote";
+            return "vote?faces-redirect=true";
         } else {
-            errorBean.setErrorMessage("Login Failed");
-            errorBean.setErrorPosition("col-md-2 col-md-offset-5");
-            return "index";
+            FacesMessage message = new FacesMessage("Login Failed");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, message);
+            return "index?faces-redirect=true";
         }
     }
 
     public String logout() {
         if (userController.getVoter() != null) userController.setVoter(null);
-        return "index";
+        return "index?faces-redirect=true";
+    }
+
+    public String register() {
+
+        try {
+            voterService.register(voter);
+            userController.setVoter(voter);
+            return "vote?faces-redirect=true";
+
+        } catch (Exception e) {
+            System.out.println("Unable to register - " + e.getMessage());
+            FacesMessage message = new FacesMessage("Registration Failed");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, message);
+            return "index?faces-redirect=true";
+        }
+    }
+
+    public Voter getVoter() {
+        return voter;
+    }
+
+    public void setVoter(Voter voter) {
+        this.voter = voter;
     }
 
     public Integer getId() {
-        return id;
+        return voter.getVoterId();
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.voter.setVoterId(id);
+    }
+
+    public String getName() {
+        return voter.getVoterName();
+    }
+
+    public void setName(String name) {
+        this.voter.setVoterName(name);
+    }
+
+    public String getSurname() {
+        return voter.getVoterSurname();
+    }
+
+    public void setSurname(String surname) {
+        this.voter.setVoterSurname(surname);
     }
 
     public String getPassword() {
-        return password;
+        return voter.getVoterPassword();
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.voter.setVoterPassword(password);
     }
 
     public UserController getUserController() {
@@ -67,13 +112,5 @@ public class VoterBean {
 
     public void setUserController(UserController userController) {
         this.userController = userController;
-    }
-
-    public ErrorBean getErrorBean() {
-        return errorBean;
-    }
-
-    public void setErrorBean(ErrorBean errorBean) {
-        this.errorBean = errorBean;
     }
 }

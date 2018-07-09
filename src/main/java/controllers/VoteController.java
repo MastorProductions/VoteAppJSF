@@ -1,5 +1,7 @@
 package controllers;
 
+import entities.Candidate;
+import entities.Voter;
 import services.VoterService;
 
 import javax.ejb.EJB;
@@ -13,8 +15,8 @@ public class VoteController {
     @EJB
     private VoterService voterService;
 
-    public String vote(int voterId, int candidateId, int vote) {
-        voterService.vote(voterId, candidateId, vote);
-        return "vote";
+    public String vote(Voter voter, Candidate candidate, int vote) {
+        voterService.vote(voter, candidate, vote);
+        return "vote?faces-redirect=true";
     }
 }

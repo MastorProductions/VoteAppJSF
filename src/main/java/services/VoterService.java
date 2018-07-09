@@ -23,12 +23,12 @@ public class VoterService {
         em.persist(v);
     }
 
-    public Voter login(VoterBean v) {
+    public Voter login(Voter v) {
         try {
             return em
                     .createNamedQuery("Voter.login", Voter.class)
-                    .setParameter("voterId", v.getId())
-                    .setParameter("voterPassword", v.getPassword())
+                    .setParameter("voterId", v.getVoterId())
+                    .setParameter("voterPassword", v.getVoterPassword())
                     .getSingleResult();
         } catch (Exception e) {
             System.out.println("Unable to login - " + e.getMessage());
@@ -50,11 +50,11 @@ public class VoterService {
     }
 
     @Transactional
-    public void vote(int voterId, int candidateId, int vote) {
+    public void vote(Voter voter, Candidate candidate, int vote) {
         Vote v = new Vote();
 
-        v.setVoterByVoterId(em.find(Voter.class, voterId));
-        v.setCandidateByCandidateId(em.find(Candidate.class, candidateId));
+        v.setVoterByVoterId(voter);
+        v.setCandidateByCandidateId(candidate);
         v.setVote(vote);
 
         try {

@@ -1,12 +1,11 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
 
   <ui:fragment rendered="#{navigationController.rankingList.size() gt 0}">
 
-    <ui:include src="filter.xhtml"/>
+    <ui:include src="../components/filter.xhtml"/>
 
     <div class="row">
       <div class="col-md-6 col-md-offset-3">

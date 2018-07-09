@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+  <ui:fragment rendered="#{navigationController.voteList.size() gt 0}">
+
+    <ui:include src="../components/filter.xhtml"/>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+
+        <p:dataTable id="myTable" value="#{navigationController.voteList}" var="v"
+                     styleClass="table table-bordered table-striped table-hover">
+
+          <p:column headerText="AFM">
+            #{v.candidateByCandidateId.candidateId}
+          </p:column>
+
+          <p:column headerText="Name">
+            #{v.candidateByCandidateId.candidateName}
+          </p:column>
+
+          <p:column headerText="Surname">
+            #{v.candidateByCandidateId.candidateSurname}
+          </p:column>
+
+          <p:column headerText="Vote">
+            <p data-placement="top" data-toggle="tooltip" title="vote">
+              <button class="btn btn-#{v.vote > 0 ? 'primary' : 'danger'}"
+                      data-title="#{v.vote > 0 ? 'yes' : 'no'}">
+                <span class="glyphicon glyphicon-thumbs-#{v.vote > 0 ? 'up' : 'down'}"/>
+              </button>
+            </p>
+          </p:column>
+
+        </p:dataTable>
+
+      </div>
+    </div>
+
+  </ui:fragment>
+
+</ui:composition>

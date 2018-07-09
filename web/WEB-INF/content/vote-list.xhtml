@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+  <ui:fragment rendered="#{navigationController.candidateList.size() gt 0}">
+
+    <ui:include src="../components/filter.xhtml"/>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+
+        <p:dataTable id="myTable" value="#{navigationController.candidateList}" var="c"
+                     styleClass="table table-bordered table-striped table-hover">
+
+          <p:column headerText="AFM">
+            #{c.candidateId}
+          </p:column>
+
+          <p:column headerText="Name">
+            #{c.candidateName}
+          </p:column>
+
+          <p:column headerText="Surname">
+            #{c.candidateSurname}
+          </p:column>
+
+          <p:column headerText="Vote">
+            <p data-placement="top" data-toggle="tooltip" title="vote">
+              <h:form>
+                <button class="btn btn-primary" data-title="yes"
+                        jsf:action="#{voteController.vote(userController.voter, c, 1)}">
+                  <i class="glyphicon glyphicon-thumbs-up"/>
+                </button>
+                <button class="btn btn-danger" data-title="no"
+                        jsf:action="#{voteController.vote(userController.voter, c, -1)}">
+                  <i class="glyphicon glyphicon-thumbs-down"/>
+                </button>
+              </h:form>
+            </p>
+          </p:column>
+
+        </p:dataTable>
+
+      </div>
+    </div>
+
+  </ui:fragment>
+
+</ui:composition>

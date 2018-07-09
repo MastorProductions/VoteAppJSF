@@ -13,7 +13,7 @@
             <span class="icon-bar"/>
             <span class="icon-bar"/>
           </button>
-          <h:commandLink styleClass="navbar-brand" action="index" value="#NerdElections"/>
+          <h:commandLink styleClass="navbar-brand" action="#{navigationController.vote}" value="#NerdElections"/>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -41,7 +41,7 @@
                 </a>
               </li>-->
               <li>
-                <h:commandLink action="#{userController.logout}" style="font-weight: bold" value="Logout"/>
+                <h:commandLink action="#{voterBean.logout}" style="font-weight: bold" value="Logout"/>
               </li>
             </ui:fragment>
             <ui:fragment rendered="#{userController.voter eq null}">
@@ -58,7 +58,7 @@
                 <h:commandLink styleClass="dropdown-toggle"
                                style="font-weight: bold"
                                data-toggle="dropdown"
-                               action="#{userController.login}"
+                               action="#{navigationController.vote}"
                                value="Login"/>
 
               </li>
